@@ -1,8 +1,11 @@
 import axios from "axios"
 import {useState, useEffect} from 'react'
 
+import UpdateForm from "./UpdateForm"
+
 const FetchTable = () => {
     const [testcaseData, setTestcaseData]= useState([])
+    const [updateRow, setUpdateRow]= useState([])
 
     useEffect(() => {
         axios.get('http://localhost:3003/').then(response => {
@@ -33,30 +36,15 @@ const FetchTable = () => {
                                             Last Updated:&nbsp;&nbsp; {row[row.length-1]}
                                         </div>
                                     </td> )} 
-                            else if(index==row.length-2) {
-                                return (
-                                        <td>
-                                            <div class="dropdown">
-                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Select
-                                                </a>
-                                                <ul class="dropdown-menu status">
-                                                    <li>
-                                                        <a class="dropdown-item" href="#">Pass</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="dropdown-item" href="#">Fail</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </td>)
-                            }
-                            else if(index>1 && index<row.length-2)
+                            else if(index>1 && index<=row.length-2)
                                 return <td>{cols}</td>
                         })} 
+                        <td><button data-bs-toggle="collapse" data-bs-target="#collapseUpdate" aria-expanded="false" aria-controls="collapseUpdate" onClick={(e)=> {setUpdateRow(row)}}>EDIT</button></td>
                     </tr> )
             }))}
     return (
+            <>
+            {updateRow.length>0?<UpdateForm updateRow={updateRow}/>:<></>}
             <table class="table testcases">
                 <thead>
                     <tr>
@@ -65,12 +53,14 @@ const FetchTable = () => {
                         <th scope="col">Module</th>
                         <th scope="col">Priority</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Update</th>
                     </tr>
                 </thead>
                 <tbody>
                     {tData()}
                 </tbody>
             </table>
+            </>
     )
 }
 
