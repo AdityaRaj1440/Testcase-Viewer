@@ -14,13 +14,12 @@ A Web Application to view, add, update and delete testcases for different module
 ### Database Setup
 
 3. Create a Database test_empiler:- 
-<br><pre>create database test_empiler<pre>
+<br><pre>create database test_empiler;<pre>
 4. Switch to test_empiler in psql terminal:-
-<br><pre>\c test_empiler</pre>
+<br><pre>\c test_empiler;</pre>
 5. Create the table testcases with the following command:-
 <br><pre>
-CREATE TABLE testcases
-(
+CREATE TABLE testcases(
   test_id serial primary key,
   testcase_name varchar(50) NOT NULL,
   estimated_time decimal(10,2),
@@ -30,23 +29,25 @@ CREATE TABLE testcases
   last_updated timestamp
 );
 </pre>
+
 ### Backend Setup
 
-6. Install the below Python packages: 
-     <br> pip install psycopg2 dotenv flask Flask-Cors
+6. Open a terminal in the backend folder and install the below Python packages: 
+     <br> pip install psycopg2 python-dotenv Flask Flask-Cors
 
+7. Create a env file and store the posgres login password with variable name:- "DB_PASSWORD"
 
-7. Start the Flask backend server:
+8. Start the Flask backend server:
 
 
 The server will run at `http://localhost:3003`.
 
 ### Frontend Setup
 
-8. Install the frontend dependencies:
+9. Open a terminal in the Frontend's "src" folder and install the frontend dependencies using "npm i":
 
 
-8. Start the React development server:
+10. Start the React development server:
 
 
 The app will be available at `http://localhost:3000`.
