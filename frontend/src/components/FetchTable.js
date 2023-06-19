@@ -57,7 +57,7 @@ const FetchTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {tData()}
+                    {testcaseData.length==0?null:tData()}
                 </tbody>
             </table>
             </>
